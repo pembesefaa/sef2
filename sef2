@@ -1,0 +1,26 @@
+
+#Standart Scaler
+ss=StandardScaler()
+s_x_train=ss.fit_transform(x_train)
+s_x_test=ss.transform(x_test)
+
+#Minmax Scaler
+mm=MinMaxScaler()
+m_x_train=mm.fit_transform(x_train)
+m_x_test=mm.transform(x_test)
+
+
+
+
+
+#without scale: entropy
+dtc=DecisionTreeClassifier(criterion="entropy")
+dtc.fit(x_train,y_train)
+pred1=dtc.predict(x_test)
+confusion_matrix(y_test,pred1)
+as1=accuracy_score(y_test,pred1)
+ps1=precision_score(y_test,pred1)
+rs1=recall_score(y_test,pred1)
+fs1=f1_score(y_test,pred1)
+plot_roc_curve(dtc,x_test,pred1)
+entropy_without=[as1,ps1,rs1,fs1]
